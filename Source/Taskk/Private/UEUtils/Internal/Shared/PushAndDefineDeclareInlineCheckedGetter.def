@@ -1,0 +1,2 @@
+UE_PUSH_MACRO("DEFINE_INLINE_CHECKED_GETTER")
+#define DEFINE_INLINE_CHECKED_GETTER(Type, Name, /*TemplateArguments*/...) FORCEINLINE Type & Get##Name##Checked(UWorld const * const& _world) { return GetChecked<Type>(Get##Name __VA_ARGS__ (_world), L"%hs : failed to aquire the required object", __func__); }

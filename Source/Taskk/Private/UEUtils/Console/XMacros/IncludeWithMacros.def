@@ -1,0 +1,6 @@
+#define CONSOLE_LOG_LIBRARY_INCLUDE_WITH_MACROS_DEF
+
+#include "../Console.nh"
+
+UE_PUSH_MACRO("CLOG")
+UE_PUSH_MACRO("CLOGF")

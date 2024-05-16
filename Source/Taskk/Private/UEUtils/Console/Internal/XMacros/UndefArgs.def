@@ -1,0 +1,6 @@
+#ifdef ARGS_DECL
+    #undef ARGS_DECL
+#endif
+#ifdef ARGS_USE
+    #undef ARGS_USE
+#endif

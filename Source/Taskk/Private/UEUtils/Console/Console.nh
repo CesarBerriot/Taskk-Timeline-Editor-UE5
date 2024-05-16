@@ -1,0 +1,97 @@
+/// Console Log Library - Full-Featured namespace-style library for interacting with the Windows Console for debugging purposes
+
+// NOTE : All headers in this library use the .nh file extension (means native header) so UHT doesn't interfere
+// with preprocessor metaprogramming (for you curiosity, UHT's generated sources were including my header guards,
+// which purposefully generate error when non-library files include internal headers) 
+
+#ifndef CONSOLE_LOG_LIBRARY_INCLUDE_WITH_MACROS_DEF
+#error The Console Log Library was directly included. Use Utils/Console/XMacros/IncludeWithMacros.def and Utils/Console/XMacros/RestoreMacros.def instead
+#endif
+
+#include "Internal/XMacros/PushMacros.def"
+#include "Internal/XMacros/ResetAll.def"
+
+/**
+ * TODOs :
+ * - Functions
+ *     - ClearConsole()
+ * - Documentation
+ *		- Functions
+ *			- ClearConsole()
+ *		- Macros
+ *			- CLOG/CLOGF
+ *			- Console Colors
+ *	- Check Console.cpp TODOs
+ */
+
+#include "Internal/Macros/Colors.nh"
+#include "Internal/Macros/Declare.nh"
+
+//Shorter Log Macros
+#define CLOG UEUtils::Console::LogChecked
+#define CLOGF UEUtils::Console::LogFChecked
+
+#ifndef CONSOLE_LOG_LIBRARY_FUNCTIONS_GUARD
+#define CONSOLE_LOG_LIBRARY_FUNCTIONS_GUARD
+namespace UEUtils::Console
+{
+	/**
+	 * Checks whether the console exists.
+	 * @returns Whether a console has been allocated and is ready to print data
+	 */
+	DECLARE(ConsoleExists)
+	/**
+	 * @brief Attempts to create a console window
+	 * @returns Whether the operation succeeded. Will be false if a console already exists. 
+	 */
+	DECLARE(CreateConsole)
+	/**
+	 * @brief Attempts to create a console window
+	 * @returns Whether the operation succeeded. Will be false if a console already exists. 
+	 */
+	DECLARE(KillConsole)
+	/**
+	 * @brief Logs a message in the console, prefixed by a time code.
+	 * @param _msg The message to print in the console
+	 * @returns Whether the message was successfully sent. Will fail in case the console hasn't been allocated.
+	 */
+#include "Internal/XMacros/UndefArgs.def"
+#define ARGS_DECL FString const & _msg
+#define ARGS_USE _msg
+	DECLARE(Log)
+#include "Internal/XMacros/ResetArgs.def"
+	/**
+	 * @brief Logs a formatted message to the console.
+	 * Uses POSIX-compliant string formatting
+	 * (see IEEE P1003.1 2001 section XSH 3 or https://www.gnu.org/software/gettext/manual/html_node/c_002dformat.html).
+	 * PartyGameUtils::Console::Log()'s description also applies to this function.
+	 * @param _format The formatting string
+	 * @param _args formatting arguments
+	 */
+#include "Internal/XMacros/UndefAll.def"
+#define TEMPLATE template<typename TFmtStr, typename ...TArgs>
+#define ARGS_DECL TFmtStr const & _format, TArgs... _args
+#define ARGS_USE _format, _args...
+	DECLARE(LogF)
+#include "Internal/XMacros/ResetAll.def"
+	/**
+	 * @brief Makes the console visible.
+	 * @returns Whether the operation succeeded or not. Will fail if the console doesn't exist.
+	 */
+	bool ShowConsole();
+	/**
+	 * @brief Makes the console hidden.
+	 * @returns Whether the operation succeeded or not. Will fail if the console doesn't exist.
+	 */
+	bool HideConsole();
+}
+
+#include "Internal/XMacros/UndefAll.def"
+
+#ifndef UEUTILS_NO_CONSOLE
+template <typename TFmtStr, typename... TArgs>
+FORCEINLINE bool UEUtils::Console::LogF(TFmtStr const & _format, TArgs... _args) { return Log(FString::Printf(_format, _args...)); }
+#endif /*UEUTILS_NO_CONSOLE*/
+#endif /*CONSOLE_LOG_LIBRARY_FUNCTIONS_GUARD*/
+
+#include "Internal/XMacros/PopMacros.def"

@@ -1,0 +1,13 @@
+#ifndef CONSOLE_LOG_LIBRARY_INCLUDE_WITH_MACROS_DEF
+#error This header is internal to the Console Log Library. If you meant to include this library's console colors, include the library instead.
+#endif
+
+#define CONSOLE_DEFAULT CONSOLE_WHITE
+#define CONSOLE_BLACK L"\033[0;30m"
+#define CONSOLE_RED L"\033[0;31m"
+#define CONSOLE_GREEN L"\033[0;32m"
+#define CONSOLE_YELLOW L"\033[0;33m"
+#define CONSOLE_BLUE L"\033[0;34m"
+#define CONSOLE_PURPLE L"\033[0;35m"
+#define CONSOLE_CYAN L"\033[0;36m"
+#define CONSOLE_WHITE L"\033[0;37m"

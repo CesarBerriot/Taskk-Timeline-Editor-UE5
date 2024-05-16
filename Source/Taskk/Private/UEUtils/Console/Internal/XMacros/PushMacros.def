@@ -1,0 +1,19 @@
+/** PushMacros.def - Pushes macros used by the console library onto the stack 
+so their original definition can be restored once the library is done using them */
+
+//Function Declaration Macros
+UE_PUSH_MACRO("DECLARE")
+UE_PUSH_MACRO("TEMPLATE")
+UE_PUSH_MACRO("ARGS_DECL")
+UE_PUSH_MACRO("ARGS_USE")
+
+//Console Colors
+UE_PUSH_MACRO("CONSOLE_DEFAULT")
+UE_PUSH_MACRO("CONSOLE_BLACK")
+UE_PUSH_MACRO("CONSOLE_RED")
+UE_PUSH_MACRO("CONSOLE_GREEN")
+UE_PUSH_MACRO("CONSOLE_YELLOW")
+UE_PUSH_MACRO("CONSOLE_BLUE")
+UE_PUSH_MACRO("CONSOLE_PURPLE")
+UE_PUSH_MACRO("CONSOLE_CYAN")
+UE_PUSH_MACRO("CONSOLE_WHITE")

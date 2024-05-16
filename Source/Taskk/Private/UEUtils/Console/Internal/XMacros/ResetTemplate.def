@@ -1,0 +1,3 @@
+#include "UndefTemplate.def"
+
+#define TEMPLATE

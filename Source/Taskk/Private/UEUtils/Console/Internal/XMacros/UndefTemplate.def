@@ -1,0 +1,3 @@
+#ifdef TEMPLATE
+    #undef TEMPLATE
+#endif

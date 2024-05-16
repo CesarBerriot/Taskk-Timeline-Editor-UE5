@@ -1,0 +1,4 @@
+#include "UndefArgs.def"
+
+#define ARGS_DECL
+#define ARGS_USE
